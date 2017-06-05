@@ -18,3 +18,22 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['middleware' => ['auth', 'role:admin']], function(){
+	Route::get('/admin', function(){
+		return 'Halaman Admin';
+	});
+});
+
+Route::group(['middleware' => ['auth', 'role:manager']], function(){
+	Route::get('/manager', function(){
+		return 'Halaman Manager';
+	});
+});
+
+Route::group(['middleware' => ['auth', 'role:supervisor']], function(){
+	Route::get('/supervisor', function(){
+		return 'Halaman Supervisor';
+	});
+});
