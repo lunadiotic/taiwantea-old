@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->integer('total_price');
+            $table->enum('status', ['order', 'confirm', 'deliver']);
             $table->timestamps();
         });
     }
