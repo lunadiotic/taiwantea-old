@@ -16,6 +16,7 @@ class CreateHotOffersTable extends Migration
         Schema::create('hot_offers', function (Blueprint $table) {
             $table->increments('id');
             $table->text('image');
+            $table->enum('status', [0,1]);
             $table->timestamps();
         });
     }
