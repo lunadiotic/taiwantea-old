@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned()->index();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('name');
             $table->text('image');
             $table->integer('price');

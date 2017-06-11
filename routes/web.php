@@ -41,6 +41,11 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 	Route::get('/admin', function(){
 		return 'Halaman Admin';
 	});
+
+	Route::resource('hot_offer', 'HotOfferController', ['names' => 'hot_offer']);
+	Route::resource('category','CategoryController', ['names' => 'category']);
+  Route::resource('item', 'ItemController', ['names' => 'item']);
+  Route::resource('topping', 'ToppingController', ['names' => 'topping']);
 });
 
 Route::group(['middleware' => ['auth', 'role:manager']], function(){
