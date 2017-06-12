@@ -149,8 +149,8 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-        'name' => 'required|unique:items',
-        'slug' => 'required|unique:items',
+        'name' => 'required|unique:items,name,'.$id,
+        'slug' => 'required|unique:items,name,'.$id,
         'category_id' => 'required|string',
         'price' => 'required|numeric',
         'image' => 'required'
