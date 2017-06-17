@@ -10,6 +10,12 @@
     <small class="text-danger">{{ $errors->first('name') }}</small>
 </div>
 
+<div class="form-group{{ $errors->has('topcat_id') ? ' has-error' : '' }}">
+    {!! Form::label('topcat_id', 'Category') !!}
+    {!! Form::select('topcat_id', $select_category, null, ['class' => 'form-control', 'required' => 'required']) !!}
+    <small class="text-danger">{{ $errors->first('topcat_id') }}</small>
+</div>
+
 <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
     {!! Form::label('price', 'Price') !!}
     {!! Form::number('price', null, ['class' => 'form-control', 'required' => 'required']) !!}

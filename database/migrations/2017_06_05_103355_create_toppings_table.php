@@ -13,8 +13,17 @@ class CreateToppingsTable extends Migration
      */
     public function up()
     {
+        Schema::create('topping_categories', function (Blueprint $table){
+            $table->increments('id');
+            $table->string('slug')->unique();
+            $table->string('title');
+            $table->timestamps();
+        });
+
         Schema::create('toppings', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('topcat_id')->unsigned();
+            $table->foreign('topcat_id')->references('id')->on('topping_categories')->onDelete('cascade');
             $table->string('slug');
             $table->string('name');
             $table->text('image');
@@ -31,5 +40,6 @@ class CreateToppingsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('toppings');
+        Schema::dropIfExists('topping_categories');
     }
 }

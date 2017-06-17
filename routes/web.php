@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 	Route::resource('hot_offer', 'HotOfferController', ['names' => 'hot_offer']);
 	Route::resource('category','CategoryController', ['names' => 'category']);
   Route::resource('item', 'ItemController', ['names' => 'item']);
+  Route::resource('topcat', 'TopCatController', ['names' => 'topcat']);
   Route::resource('topping', 'ToppingController', ['names' => 'topping']);
 });
 

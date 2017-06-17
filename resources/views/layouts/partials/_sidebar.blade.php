@@ -10,10 +10,16 @@
                   <li>
                     <a href="{{ route('home') }}" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span> </a>
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-pencil-alt"></i><span> Products </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-pencil-alt"></i><span> Menus </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="{{ route('item.index') }}"> Items</a></li>
                             <li><a href="{{ route('category.index') }}"> Categories</a></li>
+                            <li><a href="{{ route('item.index') }}"> Items</a></li>
+                        </ul>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="ti-pencil-alt"></i><span> Toppings </span> <span class="menu-arrow"></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('topcat.index') }}"> Categories</a></li>
                             <li><a href="{{ route('topping.index') }}"> Toppings</a></li>
                         </ul>
                     </li>

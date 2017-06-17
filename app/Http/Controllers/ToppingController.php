@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Topping;
+use App\Models\TopCat;
 
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
@@ -38,6 +39,7 @@ class ToppingController extends Controller
               $topping->push([
                   'id' => $row->id,
                   'name' => $row->name,
+                  'category' => $row->category->title,
                   'price' => 'Rp '.number_format($row->price),
                   'image' => "<a href='" .$row->image. "' data-lightbox='image-1' data-title='" .$row->image. "' >
                                   <img height='50' width='50' src='" .$row->image. "' alt='placeholder+image'>
@@ -60,7 +62,8 @@ class ToppingController extends Controller
 
       $html = $htmlBuilder
               ->addColumn(['data' => 'id', 'name' => 'id', 'title' => 'ID'])
-              ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Menu'])
+              ->addColumn(['data' => 'name', 'name' => 'name', 'title' => 'Topping'])
+              ->addColumn(['data' => 'category', 'name' => 'category', 'title' => 'Category'])
               ->addColumn(['data' => 'price', 'name' => 'price', 'title' => 'Price'])
               ->addColumn(['data' => 'image', 'name' => 'image', 'title' => 'Image'])
               ->addColumn(['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => 'false']);
@@ -77,7 +80,8 @@ class ToppingController extends Controller
   {
     $bread = $this->bread;
     $bread[0] = route('topping.index');
-    return view('pages.topping.create', compact('bread'));
+    $select_category = TopCat::pluck('title', 'id');
+    return view('pages.topping.create', compact('bread', 'select_category'));
   }
 
   /**
@@ -128,10 +132,11 @@ class ToppingController extends Controller
   {
     $bread = $this->bread;
     $bread[0] = route('topping.index');
+    $select_category = TopCat::pluck('title', 'id');
 
     $topping = Topping::findOrFail($id);
 
-    return view('pages.topping.edit', compact('bread', 'topping'));
+    return view('pages.topping.edit', compact('bread', 'topping', 'select_category'));
   }
 
   /**
